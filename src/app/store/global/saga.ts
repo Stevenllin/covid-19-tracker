@@ -1,18 +1,19 @@
 import { takeEvery, all, call, put } from 'redux-saga/effects';
 import apiService from 'app/api/service/apiService';
-import { sagaBoundary } from '../service';
 import { GlobalState, GLOBAL__INIT_FETCH_GLOBAL_DATA } from './types';
 import { initFetchGlobalDataDoneAction } from './action';
 
 /**
- * @description 初始取得全域資料
+ * @description initialize global data
  */
  function * initFetchGlobalData () {
-  console.log('test');
   const response: GlobalState = yield all({
-    worldwide: call(apiService.getV3Covid19All)
+    worldwide: call(apiService.getV3Covid19All),
+    countryDataList: call(apiService.getV3Covid19Countries)
   });
-  yield put(initFetchGlobalDataDoneAction(response));
+  const countryList = response.countryDataList.map((item) => item.country);
+  const combineResponse = { ...response, countryList };
+  yield put(initFetchGlobalDataDoneAction(combineResponse));
 }
 
 
