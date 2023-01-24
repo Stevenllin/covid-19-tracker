@@ -24,6 +24,13 @@ export default {
   */
   getV3Covid19CountriesCountry: async(country: string) => {
     return axios.get<GetV3CovidCountriesCountryResp>(`/v3/covid-19/countries/${country}`, {})
-    .then((response) => response.data)
+      .then((response) => response.data)
+  },
+  /**
+   * @description [GET] get total global COIVD-19 vaccine doses administered 
+  */
+  getV3Covid19VaccineCoverage: async(lastdays: number) => {
+    return axios.get(`/v3/covid-19/vaccine/coverage?lastdays=${lastdays}`, {})
+      .then((response) => response.data)
   }
 }

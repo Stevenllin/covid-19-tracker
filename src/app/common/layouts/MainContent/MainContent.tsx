@@ -2,7 +2,7 @@ import React from 'react';
 
 const MainContent: React.FC = (props) => {
   return (
-    <main>
+    <main className="w-100 ms-4">
       {props.children}
     </main>
   )

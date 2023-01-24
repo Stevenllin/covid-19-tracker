@@ -1,12 +1,16 @@
-/* Variable */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,300&family=Noto+Nastaliq+Urdu:wght@700&display=swap');body {
+  font-family: 'Montserrat', sans-serif;
+}
 
 /* Variable */
 $main_dark: #6770C0;
 $main_normal: #A2A8DC;
 $main_light: #F0F3FF;
+$color_white: #FFFFFF;
+/* Variable */
 
 /* Html tag */
-html{
+html {
   height: 100%;
 }
 
@@ -18,7 +22,7 @@ body {
 
   #root {
     height: 100%;
-    padding: 25px;
+    padding: 40px 25px;
   }
 }
 
@@ -32,6 +36,10 @@ li {
   padding: 0px;
   list-style: none;
 }
+
+p {
+  margin: 0px;
+}
 /* Html tag */
 
 /* Navigation */
@@ -42,3 +50,13 @@ li {
   border-radius: 15px;
 }
 /* Navigation */
+
+/* Worldwide */
+.worldwide-card {
+  width: 100%;
+  background-color: $color_white;
+  min-height: 180px;
+  border-radius: 15px;
+  padding: 15px;
+}
+/* Worldwide */
