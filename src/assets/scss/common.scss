@@ -1,0 +1,44 @@
+/* Variable */
+
+/* Variable */
+$main_dark: #6770C0;
+$main_normal: #A2A8DC;
+$main_light: #F0F3FF;
+
+/* Html tag */
+html{
+  height: 100%;
+}
+
+body {
+  height: 100% !important;
+  overflow: hidden !important;
+  padding: 0;
+  background-color: $main_light;
+
+  #root {
+    height: 100%;
+    padding: 25px;
+  }
+}
+
+nav {
+  height: 100%;
+}
+
+ul,
+li {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+/* Html tag */
+
+/* Navigation */
+.nav-container {
+  height: 100%;
+  width: 80px;
+  background-color: $main_normal;
+  border-radius: 15px;
+}
+/* Navigation */
