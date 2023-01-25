@@ -42,6 +42,18 @@ p {
 }
 /* Html tag */
 
+/* common */
+.doughnut-container {
+  position: relative;
+  padding: 20px;
+
+  & canvas {
+    height: 250px !important;
+    width: 250px !important;
+  }
+}
+/* common */
+
 /* Navigation */
 .nav-container {
   height: 100%;
