@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'app/store/types';
 import apiService from 'app/api/service/apiService';
 import DoughnutChart from 'app/common/components/DoughnutChart/DoughnutChart';
+import BarChart from 'app/common/components/BarChart/BarChart';
 import { GetV3Covid19AllResp } from 'app/api/model/get/getV3Covid19All';
 import { CasesDeathsRecoveredVaccineData } from './types';
 
@@ -73,7 +74,9 @@ const Worldwide: React.FC = () => {
               </div>
             </div>
             <div className="col-9">
-              2
+              <div className="worldwide-card">
+                <BarChart />
+              </div>
             </div>
           </div>
         )

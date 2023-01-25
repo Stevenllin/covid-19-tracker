@@ -50,7 +50,7 @@ const DoughnutChart: React.FC<DoughnutProps> = (props) => {
           <p className="fs-3">{Math.floor((props.value) * 100)}%</p>
         </div>
       </div>
-      <p className="text-center fs-3 mt-4">{props.text}</p>
+      <p className="text-center fs-5 mt-4">{props.text}</p>
     </div>
   )
 }
