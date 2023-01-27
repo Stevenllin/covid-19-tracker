@@ -9,8 +9,8 @@ const FeaturesRoutes: React.FC = () => {
       <BrowserRouter>
         <Switch>
           <Route
-            path={ROUTES.FEATURES__WORLDWIDE}
-            component={React.lazy(() => import('./Worldwide'))}
+            path={ROUTES.FEATURES__HOMEPAGE}
+            component={React.lazy(() => import('./Homepage'))}
           />
         </Switch>
       </BrowserRouter>

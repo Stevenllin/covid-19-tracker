@@ -10,20 +10,8 @@ $color_white: #FFFFFF;
 /* Variable */
 
 /* Html tag */
-html {
-  height: 100%;
-}
-
 body {
-  height: 100% !important;
-  overflow: hidden !important;
-  padding: 0;
   background-color: $main_light;
-
-  #root {
-    height: 100%;
-    padding: 40px 25px;
-  }
 }
 
 nav {
@@ -56,15 +44,24 @@ p {
 .bar-container {
   padding: 50px;
 }
+
+.col-3 {
+  padding: 0px;
+}
+
+.col-9 {
+  padding: 0px;
+}
 /* common */
 
-/* Navigation */
-.nav-container {
-  height: 100%;
-  width: 80px;
-  background-color: $main_normal;
-  border-radius: 15px;
+/* Homepage */
+.homepage-container {
+  width: 85%;
+  margin: 0 auto;
 }
+/* Homepage */
+
+/* Navigation */
 /* Navigation */
 
 /* Worldwide */
@@ -73,6 +70,6 @@ p {
   background-color: $color_white;
   min-height: 180px;
   border-radius: 15px;
-  padding: 15px;
+  padding: 20px 30px;
 }
 /* Worldwide */
