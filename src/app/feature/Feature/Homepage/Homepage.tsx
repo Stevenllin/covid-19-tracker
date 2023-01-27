@@ -4,39 +4,41 @@ import { RootState } from 'app/store/types';
 import apiService from 'app/api/service/apiService';
 import { CasesDeathsRecoveredData } from './types';
 import Worldwide from './Section/Worldwide';
+import Continent from './Section/Continent';
 
 const Homepage: React.FC = () => {
-  const countryDataList = useSelector((state: RootState) => state.global.countryDataList);
-  const [worldwideData, setWorldwideData] = useState<CasesDeathsRecoveredData[]>();
-  // console.log('countryDataList', countryDataList);
+  const worldwide = useSelector((state: RootState) => state.global.worldwide);
+  const [worldwideSectionData, setWorldwideSectionData] = useState<CasesDeathsRecoveredData[]>();
   /** initialize the worldwide data */
   useEffect(() => {
     (async () => {
-      const [worldwideResponse] = await Promise.all([
-        apiService.getV3Covid19All()
+      const [continentsResponse] = await Promise.all([
+        apiService.getV3Covid19Continents()
       ])
       const casesDeathsRecoveredVaccineArray = [];
-      casesDeathsRecoveredVaccineArray.push({
-        item: 'Cases',
-        totalNumber: worldwideResponse.cases,
-        numberDifference: worldwideResponse.todayCases
-      }, {
-        item: 'Deaths',
-        totalNumber: worldwideResponse.deaths,
-        numberDifference: worldwideResponse.todayDeaths
-      }, {
-        item: 'Recovered',
-        totalNumber: worldwideResponse.recovered,
-        numberDifference: worldwideResponse.todayRecovered
-      })
-      if (worldwideResponse) {
-        setWorldwideData(casesDeathsRecoveredVaccineArray);
+      if (worldwide) {
+        casesDeathsRecoveredVaccineArray.push({
+          item: 'Cases',
+          totalNumber: worldwide.cases,
+          numberDifference: worldwide.todayCases
+        }, {
+          item: 'Deaths',
+          totalNumber: worldwide.deaths,
+          numberDifference: worldwide.todayDeaths
+        }, {
+          item: 'Recovered',
+          totalNumber: worldwide.recovered,
+          numberDifference: worldwide.todayRecovered
+        })
+        setWorldwideSectionData(casesDeathsRecoveredVaccineArray);
       }
+      console.log('continentsResponse', continentsResponse);
     })();
   }, []);
   return (
     <div className="homepage-container">
-      <Worldwide worldwide={worldwideData}/>
+      <Worldwide worldwide={worldwideSectionData}/>
+      <Continent />
     </div>
   )
 }

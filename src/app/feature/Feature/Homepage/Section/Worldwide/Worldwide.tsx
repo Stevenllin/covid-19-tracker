@@ -2,9 +2,8 @@ import React from 'react';
 import { WorldwideProps } from './types';
 
 const Worldwide: React.FC<WorldwideProps> = (props) => {
-  console.log('props', props);
   return (
-    <div id="worldwide" className="d-flex">
+    <div id="worldwide" className="d-flex my-2">
       {
         props.worldwide && (
           props.worldwide.map((item, index) => (

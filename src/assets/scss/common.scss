@@ -15,7 +15,15 @@ body {
 }
 
 nav {
-  height: 100%;
+  position: fixed;
+  top: 60%;
+  left: 95%;
+
+  & svg {
+    width: 24px;
+    height: 24px;
+    color: $main_dark;
+  }
 }
 
 ul,
@@ -45,11 +53,11 @@ p {
   padding: 50px;
 }
 
-.col-3 {
+.col-2 {
   padding: 0px;
 }
 
-.col-9 {
+.col-8 {
   padding: 0px;
 }
 /* common */
@@ -62,6 +70,10 @@ p {
 /* Homepage */
 
 /* Navigation */
+.nav-item {
+  border-radius: 15px;
+  background-color: $main_normal;
+}
 /* Navigation */
 
 /* Worldwide */
@@ -73,3 +85,11 @@ p {
   padding: 20px 30px;
 }
 /* Worldwide */
+
+/* Continent */
+.continent-card {
+  background-color: $color_white;
+  min-height: 180px;
+  border-radius: 15px;
+}
+/* Continent */
