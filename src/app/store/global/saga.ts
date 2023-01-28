@@ -16,7 +16,6 @@ import { initFetchGlobalDataDoneAction } from './action';
   yield put(initFetchGlobalDataDoneAction(combineResponse));
 }
 
-
 export default function * watchGlobalSaga () {
   yield takeEvery(GLOBAL__INIT_FETCH_GLOBAL_DATA, initFetchGlobalData);
 }
