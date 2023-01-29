@@ -4,7 +4,7 @@
 
 /* Variable */
 $main_dark: #6770C0;
-$main_normal: #A2A8DC;
+$main_normal: #ccd1ff;
 $main_light: #F0F3FF;
 $color_white: #FFFFFF;
 /* Variable */
@@ -74,9 +74,13 @@ button {
 /* Homepage */
 
 /* Navigation */
-.nav-item {
-  border-radius: 15px;
+.nav-item-active {
+  border-radius: 30px;
   background-color: $main_normal;
+}
+
+.nav-item-active svg {
+  color: $main_dark;
 }
 /* Navigation */
 

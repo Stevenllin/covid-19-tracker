@@ -8,9 +8,7 @@ import Continent from './Section/Continent';
 
 const Homepage: React.FC = () => {
   const worldwide = useSelector((state: RootState) => state.global.worldwide);
-  const navigationState = useSelector((state: RootState) => state.global.navigationState);
   const [worldwideSectionData, setWorldwideSectionData] = useState<CasesDeathsRecoveredData[]>();
-  console.log('navigationState', navigationState);
   /** initialize the worldwide data */
   useEffect(() => {
     (async () => {
