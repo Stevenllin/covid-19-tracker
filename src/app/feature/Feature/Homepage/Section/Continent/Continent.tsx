@@ -3,17 +3,21 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'app/store/types';
 import { SelectChangeEvent } from '@mui/material/Select';
 import SelectField from 'app/common/components/SelectField';
+import DoughnutChart from 'app/common/components/DoughnutChart/DoughnutChart';
+import { NavigationStateTextEnum, NavigationStateValuesEnum } from 'app/core/enum';
 import { ContinentProps } from './types';
 import { GetV3Covid19ContinentsResp } from 'app/api/model/get/getV3Covid19Continents';
 
 const Continent: React.FC<ContinentProps> = (props) => {
   const continent = useSelector((state: RootState) => state.global.continentList);
+  const worldwide = useSelector((state: RootState) => state.global.worldwide);
+  const navigation = useSelector((state: RootState) => state.global.navigationState);
   const [selectedContinent, setSelectedContinent] = useState<string>(continent[0]);
   const [selectedContinentData, setSelectedContinentData] = useState<GetV3Covid19ContinentsResp>();
   useEffect(() => {
     (async () => {
       const selected = props.continent.filter(item => item.continent === selectedContinent)[0];
-      console.log('selected', selected);
+      setSelectedContinentData(selected);
     })();
   }, [selectedContinent]);
 
@@ -35,15 +39,39 @@ const Continent: React.FC<ContinentProps> = (props) => {
                 handleChange={handleChange}
               />
             </div>
+            {
+              selectedContinentData && worldwide && navigation === NavigationStateValuesEnum.Cases && (
+                <DoughnutChart
+                  text={NavigationStateTextEnum.Cases}
+                  value={selectedContinentData.cases/worldwide.cases}
+                />
+              )
+            }
+            {
+              selectedContinentData && worldwide && navigation === NavigationStateValuesEnum.Deaths && (
+                <DoughnutChart
+                  text={NavigationStateTextEnum.Deaths}
+                  value={selectedContinentData.deaths/worldwide.deaths}
+                />
+              )
+            }
+            {
+              selectedContinentData && worldwide && navigation === NavigationStateValuesEnum.Recovered && (
+                <DoughnutChart
+                  text={NavigationStateTextEnum.Recovered}
+                  value={selectedContinentData.recovered/worldwide.recovered}
+                />
+              )
+            }
           </div>
         </div>
         <div className="col-6 p-2">
-          <div className="continent-card">
+          <div className="continent-card p-4">
             1
           </div>
         </div>
         <div className="col-3 p-2">
-          <div className="continent-card">
+          <div className="continent-card p-4">
             1
           </div>
         </div>

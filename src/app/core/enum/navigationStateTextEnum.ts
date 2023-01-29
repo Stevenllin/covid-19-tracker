@@ -1,8 +1,8 @@
 export enum NavigationStateTextEnum {
   /** Cases */
-  Cases = 'cases',
+  Cases = 'Cases',
   /** Deaths */
-  Deaths = 'deaths',
+  Deaths = 'Deaths',
   /** Recovered */
-  Recovered = 'recovered'
+  Recovered = 'Recovered'
 }

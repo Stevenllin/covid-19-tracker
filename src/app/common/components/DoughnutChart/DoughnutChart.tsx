@@ -1,17 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from 'app/store/types';
+import { NavigationStateValuesEnum, NavigationColorValuesEnum } from 'app/core/enum';
 import { Doughnut } from "react-chartjs-2";
 import { Chart, ArcElement } from "chart.js";
 import { DoughnutProps } from './types';
 
 Chart.register(ArcElement);
 const DoughnutChart: React.FC<DoughnutProps> = (props) => {
+  const navigation = useSelector((state: RootState) => state.global.navigationState);
   const rest = 100 - Math.floor((props.value) * 100);
+  const [color, setColor] = useState<string>();
+
+  useEffect(() => {
+    (async () => {
+      switch (navigation) {
+        case (NavigationStateValuesEnum.Cases): {
+          setColor(NavigationColorValuesEnum.Cases);
+          break;
+        }
+        case (NavigationStateValuesEnum.Deaths): {
+          setColor(NavigationColorValuesEnum.Deaths);
+          break;
+        }
+        case (NavigationStateValuesEnum.Recovered): {
+          setColor(NavigationColorValuesEnum.Recovered);
+          break;
+        }
+      }
+    })();
+  }, [navigation])
+
   const data = {
     datasets: [
       {
         data: [Math.floor((props.value) * 100), rest],
         backgroundColor: [
-          "#6770C0",
+          color,
           "#FFFFFF"
         ],
         borderRadius: 50,
