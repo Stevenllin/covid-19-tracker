@@ -1,14 +1,10 @@
-import React from 'react';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from 'app/store/types';
+import { NavigationStateValuesEnum, NavigationColorValuesEnum } from 'app/core/enum';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { BarProps } from './types';
 
 ChartJS.register(
   CategoryScale,
@@ -41,27 +37,66 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      display: false
+      display: true,
+      labels: {
+        font: {
+          family: 'Montserrat',
+          size: 20
+        }
+      }
+    },
+    tooltip: {
+      titleFont: {
+        size: 20
+      },
+      bodyFont: {
+        size: 20
+      },
+      padding: 20
     }
   },
 };
 
-const labels = ['casesPerOneMillion', 'criticalPerOneMillion', 'deathsPerOneMillion', 'recoveredPerOneMillion', 'activePerOneMillion'];
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: [86434, 5.57, 865.9, 81285.99, 2664.67],
-      barThickness: 50,
-      borderRadius: 10,
-      backgroundColor: '#6770C0',
-    }
-  ],
-};
+export 
 
-const BarChart: React.FC = () => {
+const BarChart: React.FC<BarProps> = (props) => {
+  const navigation = useSelector((state: RootState) => state.global.navigationState);
+  const [color, setColor] = useState<string>();
+
+  useEffect(() => {
+    (async () => {
+      switch (navigation) {
+        case (NavigationStateValuesEnum.Cases): {
+          setColor(NavigationColorValuesEnum.Cases);
+          break;
+        }
+        case (NavigationStateValuesEnum.Deaths): {
+          setColor(NavigationColorValuesEnum.Deaths);
+          break;
+        }
+        case (NavigationStateValuesEnum.Recovered): {
+          setColor(NavigationColorValuesEnum.Recovered);
+          break;
+        }
+      }
+    })();
+  }, [navigation])
+  const labels = props.labels;
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: props.name,
+        data: props.data,
+        barThickness: 50,
+        borderRadius: 10,
+        backgroundColor: color,
+      }
+    ],
+  };
+
   return (
     <div className="bar-container">
       <Bar options={options} data={data} />
