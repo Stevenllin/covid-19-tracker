@@ -4,7 +4,9 @@ import { NavigationStateValuesEnum } from 'app/core/enum/navigationStateValuesEn
 
 const initialState: GlobalState = {
   worldwide: null,
+  continentDataList: [],
   countryDataList: [],
+  continentList: [],
   countryList: [],
   navigationState: NavigationStateValuesEnum.Cases
 }

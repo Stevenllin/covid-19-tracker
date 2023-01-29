@@ -38,7 +38,7 @@ export default {
    * @description [GET] get COVID-19 totals for all continents 
   */
   getV3Covid19Continents: async() => {
-    return axios.get<GetV3Covid19ContinentsResp>('/v3/covid-19/continents', {})
+    return axios.get<GetV3Covid19ContinentsResp[]>('/v3/covid-19/continents', {})
       .then((response) => response.data)
   }
 }

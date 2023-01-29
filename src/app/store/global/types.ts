@@ -1,10 +1,13 @@
 import { GetV3Covid19AllResp } from 'app/api/model/get/getV3Covid19All';
+import { GetV3Covid19ContinentsResp } from 'app/api/model/get/getV3Covid19Continents';
 import { GetV3Covid19CountriesResp } from 'app/api/model/get/getV3Covid19Countries';
 import { NavigationStateValuesEnum } from 'app/core/enum/navigationStateValuesEnum';
 
 export interface GlobalState {
   worldwide: GetV3Covid19AllResp | null;
+  continentDataList: GetV3Covid19ContinentsResp[];
   countryDataList: GetV3Covid19CountriesResp[];
+  continentList: string[];
   countryList: string[];
   navigationState: NavigationStateValuesEnum;
 }

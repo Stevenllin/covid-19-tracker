@@ -9,10 +9,12 @@ import { initFetchGlobalDataDoneAction } from './action';
  function * initFetchGlobalData () {
   const response: GlobalState = yield all({
     worldwide: call(apiService.getV3Covid19All),
-    countryDataList: call(apiService.getV3Covid19Countries)
+    continentDataList: call(apiService.getV3Covid19Continents),
+    countryDataList: call(apiService.getV3Covid19Countries),
   });
-  const countryList = response.countryDataList.map((item) => item.country);
-  const combineResponse = { ...response, countryList };
+  const countryList = response.countryDataList.map(item => item.country);
+  const continentList = response.continentDataList.map(item => item.continent);
+  const combineResponse = { ...response, countryList, continentList };
   yield put(initFetchGlobalDataDoneAction(combineResponse));
 }
 
