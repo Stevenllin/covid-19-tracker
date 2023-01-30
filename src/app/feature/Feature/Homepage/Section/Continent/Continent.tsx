@@ -6,25 +6,32 @@ import SelectField from 'app/common/components/SelectField';
 import DoughnutChart from 'app/common/components/DoughnutChart/DoughnutChart';
 import BarChart from 'app/common/components/BarChart/BarChart';
 import { NavigationStateTextEnum, NavigationStateValuesEnum } from 'app/core/enum';
-import { ContinentProps, BarChartData } from './types';
+import { ContinentProps, BarChartData, CountriesRanking } from './types';
 import { GetV3Covid19ContinentsResp } from 'app/api/model/get/getV3Covid19Continents';
 
 const Continent: React.FC<ContinentProps> = (props) => {
   const continent = useSelector((state: RootState) => state.global.continentList);
   const worldwide = useSelector((state: RootState) => state.global.worldwide);
   const navigation = useSelector((state: RootState) => state.global.navigationState);
+  const countryDataList = useSelector((state: RootState) => state.global.countryDataList);
   const [selectedContinent, setSelectedContinent] = useState<string>(continent[0]);
   const [selectedContinentData, setSelectedContinentData] = useState<GetV3Covid19ContinentsResp>();
+  const [countriesRanking, setCountriesRanking] = useState<CountriesRanking[]>([]);
   const [barChart, setBarChart] = useState<BarChartData>();
-  
+
   useEffect(() => {
     (async () => {
+      /** casesPerOneMillion / deathsPerOneMillion / recoveredPerOneMillion / countriesRanking */
       switch (navigation) {
         case (NavigationStateValuesEnum.Cases): {
           setBarChart({
             type: 'casesPerOneMillion',
             data: props.continent.map(item => item.casesPerOneMillion)
           })
+          const countriesRankingData = countryDataList.filter(item => item.continent === selectedContinent).map(item => {
+            return { name: item.country, data: item.cases }
+          })
+          setCountriesRanking(countriesRankingData.sort((a, b) => b.data - a.data));
           break;
         }
         case (NavigationStateValuesEnum.Deaths): {
@@ -32,6 +39,10 @@ const Continent: React.FC<ContinentProps> = (props) => {
             type: 'deathsPerOneMillion',
             data: props.continent.map(item => item.deathsPerOneMillion)
           })
+          const countriesRankingData = countryDataList.filter(item => item.continent === selectedContinent).map(item => {
+            return { name: item.country, data: item.deaths }
+          })
+          setCountriesRanking(countriesRankingData.sort((a, b) => b.data - a.data));
           break;
         }
         case (NavigationStateValuesEnum.Recovered): {
@@ -39,6 +50,10 @@ const Continent: React.FC<ContinentProps> = (props) => {
             type: 'recoveredPerOneMillion',
             data: props.continent.map(item => item.recoveredPerOneMillion)
           })
+          const countriesRankingData = countryDataList.filter(item => item.continent === selectedContinent).map(item => {
+            return { name: item.country, data: item.recovered }
+          })
+          setCountriesRanking(countriesRankingData.sort((a, b) => b.data - a.data));
           break;
         }
       }
@@ -49,6 +64,19 @@ const Continent: React.FC<ContinentProps> = (props) => {
     (async () => {
       const selected = props.continent.filter(item => item.continent === selectedContinent)[0];
       setSelectedContinentData(selected);
+
+      /** countriesRanking */
+      const countriesRankingData = countryDataList.filter(item => item.continent === selectedContinent).map(item => {
+        if (navigation === NavigationStateValuesEnum.Cases) {
+          return { name: item.country, data: item.cases }
+        } else if (navigation === NavigationStateValuesEnum.Deaths) {
+          return { name: item.country, data: item.deaths }
+        } else {
+          return { name: item.country, data: item.recovered }
+        }
+      })
+      
+      setCountriesRanking(countriesRankingData.sort((a, b) => b.data - a.data));
     })();
   }, [selectedContinent]);
 
@@ -111,7 +139,32 @@ const Continent: React.FC<ContinentProps> = (props) => {
         </div>
         <div className="col-3 p-2">
           <div className="continent-card p-4">
-            1
+            <div className="table">
+              {
+                navigation === NavigationStateValuesEnum.Cases && countriesRanking.map((item, index) => (
+                  <div key={index} className="d-flex justify-content-between table-item-cases">
+                    <p className="fs-5">{index+1} {item.name}</p>
+                    <p className="fs-5">{<strong>{item.data}</strong>}</p>
+                  </div>
+                ))
+              }
+              {
+                navigation === NavigationStateValuesEnum.Deaths && countriesRanking.map((item, index) => (
+                  <div key={index} className="d-flex justify-content-between table-item-deaths">
+                    <p className="fs-5">{index+1} {item.name}</p>
+                    <p className="fs-5">{<strong>{item.data}</strong>}</p>
+                  </div>
+                ))
+              }
+              {
+                navigation === NavigationStateValuesEnum.Recovered && countriesRanking.map((item, index) => (
+                  <div key={index} className="d-flex justify-content-between table-item-recovered">
+                    <p className="fs-5">{index+1} {item.name}</p>
+                    <p className="fs-5">{<strong>{item.data}</strong>}</p>
+                  </div>
+                ))
+              }
+            </div>
           </div>
         </div>
       </div>

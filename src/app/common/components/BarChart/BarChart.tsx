@@ -57,9 +57,6 @@ export const options = {
   },
 };
 
-
-export 
-
 const BarChart: React.FC<BarProps> = (props) => {
   const navigation = useSelector((state: RootState) => state.global.navigationState);
   const [color, setColor] = useState<string>();

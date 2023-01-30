@@ -8,3 +8,8 @@ export interface BarChartData {
   type: string;
   data: number[];
 }
+
+export interface CountriesRanking {
+  name: string;
+  data: number;
+}
