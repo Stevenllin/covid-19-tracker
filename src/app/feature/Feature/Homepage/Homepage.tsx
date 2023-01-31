@@ -6,6 +6,7 @@ import { GetV3Covid19ContinentsResp } from 'app/api/model/get/getV3Covid19Contin
 import { CasesDeathsRecoveredData } from './types';
 import Worldwide from './Section/Worldwide';
 import Continent from './Section/Continent';
+import Country from './Section/Country';
 
 const Homepage: React.FC = () => {
   const worldwide = useSelector((state: RootState) => state.global.worldwide);
@@ -47,6 +48,7 @@ const Homepage: React.FC = () => {
           <Continent continent={continentSectionData}/>
         )
       }
+      <Country />
     </div>
   )
 }

@@ -142,3 +142,29 @@ button {
   border-radius: 15px;
 }
 /* Continent */
+
+/* Country */
+.country-container {
+  .row {
+    max-height: 800px;
+  }
+  .col-4 {
+    max-height: 800px;
+  }
+  .col-8 {
+    max-height: 800px;
+  }
+}
+
+.map {
+  height: 800px;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 20px;
+  // box-shadow: 0 0 8px -4px rgba(0, 0, 0, 0.5);
+}
+
+.map .leaflet-container {
+  height: 100%;
+}
+/* Country */
