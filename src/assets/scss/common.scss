@@ -126,15 +126,6 @@ button {
 
 /* Continent */
 .continent-container {
-  .row {
-    max-height: 600px;
-  }
-  .col-3 {
-    max-height: 600px;
-  }
-  .col-6 {
-    max-height: 600px;
-  }
 }
 .continent-card {
   background-color: $color_white;
@@ -145,21 +136,16 @@ button {
 
 /* Country */
 .country-container {
-  .row {
-    max-height: 800px;
-  }
-  .col-4 {
-    max-height: 800px;
-  }
-  .col-8 {
-    max-height: 800px;
-  }
+}
+
+.country-card {
+  background-color: $color_white;
+  height: 100%;
+  border-radius: 15px;
 }
 
 .map {
   height: 800px;
-  background-color: white;
-  padding: 1rem;
   border-radius: 20px;
   // box-shadow: 0 0 8px -4px rgba(0, 0, 0, 0.5);
 }

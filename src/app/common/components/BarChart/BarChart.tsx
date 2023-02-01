@@ -21,7 +21,7 @@ export const options = {
       ticks: {
         font: {
           family: 'Montserrat',
-          size: 20,
+          size: 18,
         }
       }
     },
@@ -29,7 +29,7 @@ export const options = {
       ticks: {
         font: {
           family: 'Montserrat',
-          size: 20,
+          size: 18,
         }
       }
     }

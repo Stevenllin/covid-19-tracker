@@ -20,7 +20,7 @@ const SelectField: React.FC<SelectProps> = (props) => {
           labelId={props.label}
           id={props.label}
           onChange={props.handleChange}
-          value={props.value}
+          value={props.value.toString()}
         >
           {
             props.option.map((item, index) => {
