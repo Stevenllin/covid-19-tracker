@@ -10,6 +10,7 @@ const SelectField: React.FC<SelectProps> = (props) => {
   const theme = createTheme({
     typography: {
       fontFamily: ["Montserrat", "sans-serif"].join(","),
+      fontSize: 16
     },
   });
   return (
@@ -25,7 +26,7 @@ const SelectField: React.FC<SelectProps> = (props) => {
           {
             props.option.map((item, index) => {
               return (
-                <MenuItem key={index} value={item}>{item}</MenuItem>
+                <MenuItem key={index} value={item}><Typography>{item}</Typography></MenuItem>
               )
             })
           }

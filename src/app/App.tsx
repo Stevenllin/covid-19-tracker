@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import 'leaflet/dist/leaflet.css'
 
 const App: React.FC = () => {
+
   return (
     <Provider store={store}>
       <AppRoutes />
