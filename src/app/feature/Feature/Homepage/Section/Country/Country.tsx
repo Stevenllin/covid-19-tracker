@@ -44,13 +44,15 @@ const Country: React.FC = () => {
         <div className="col-5 p-2">
           <div className="country-card p-4">
             <div className="d-flex justify-content-end">
-              <SelectField
-                name="Lastdays"
-                label="lastdays-select"
-                value={lastDays}
-                option={option}
-                handleChange={handleChange}
-              />
+              <div className="w-60 d-flex justify-content-end">
+                <SelectField
+                  name="Lastdays"
+                  label="lastdays-select"
+                  value={lastDays}
+                  option={option}
+                  handleChange={handleChange}
+                />
+              </div>
             </div>
             {
               lineGraphData && (
