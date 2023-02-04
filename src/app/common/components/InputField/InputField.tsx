@@ -1,23 +1,38 @@
-import React, { useRef } from 'react';
+import React from 'react';
+import { useField } from 'formik';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import { Typography } from "@material-ui/core";
 import { InputFieldProps } from './types';
 
-const InputField: React.FC<InputFieldProps> = (props) => {
-  const handleChange = (e: any) => {
-    console.log(e.target.value)
-    props.value.current = e.target.value;
-  };
+const InputField: React.FC<InputFieldProps> = ({ name, options, handleChange }) => {
+  const field = useField(name);
+
   return (
-    <Autocomplete
-      disablePortal
-      value={props.value.current}
-      options={props.options}
-      onInputChange={handleChange}
-      sx={{ width: '25%' }}
-      renderInput={(params) => <TextField {...params} name='auto-input' label='Select your Country' />}
-    />
+      <Autocomplete
+        {...field}
+        options={options}
+        renderOption={(props, option) => (
+          <li key={option} {...props}>
+            <Typography style={{ fontSize: 16, fontFamily: ["Montserrat", "sans-serif"].join(",") }}>{option}</Typography>
+          </li>
+        )}
+        sx={{ width: '35%' }}
+        onChange={(event, value) => handleChange(value)}
+        renderInput={(params) => {
+          return (
+              <TextField
+                {...params}
+                InputLabelProps={{ style: { fontFamily: ["Montserrat", "sans-serif"].join(","), fontSize: 16 } }} // font size of input label
+                sx={{
+                  '.MuiInputBase-input': { fontSize: '16px', fontFamily: ["Montserrat", "sans-serif"].join(",") },
+                }}
+                label='Choose your Country'
+              />
+            )
+          }
+        }
+      />
   );
 }
-
 export default InputField;
