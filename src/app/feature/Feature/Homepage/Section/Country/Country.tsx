@@ -14,13 +14,14 @@ import { FormValues } from './types';
 const Country: React.FC = () => {
   const countryList = useSelector((state: RootState) => state.global.countryList);
   const navigation = useSelector((state: RootState) => state.global.navigationState);
+  const [selectedCountry, setSelectedCountry] = useState<string>('USA');
 
   const formik = useFormik<FormValues>({
     initialValues: {
       selectedCountry: ''
     },
     onSubmit: (formValues) => {
-      console.log('formValues', formValues);
+      setSelectedCountry(formValues.selectedCountry);
     }
   });
 
@@ -33,12 +34,12 @@ const Country: React.FC = () => {
 
   useEffect(() => {
     (async () => {
-      const response = await apiService.getV3Covid19HistoricalCountry('USA', lastDays);
+      const response = await apiService.getV3Covid19HistoricalCountry(selectedCountry, lastDays);
       if (response) {
         setLineGraphData(response.timeline);
       }
     })();
-  }, [lastDays]);
+  }, [lastDays, selectedCountry]);
 
   const handleChange = (event: SelectChangeEvent) => {
     setLastDays(parseInt(event.target.value));
