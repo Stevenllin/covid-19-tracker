@@ -26,7 +26,9 @@ const SelectField: React.FC<SelectProps> = (props) => {
           {
             props.option.map((item, index) => {
               return (
-                <MenuItem key={index} value={item}><Typography>{item}</Typography></MenuItem>
+                <MenuItem className="d-block p-3" key={index} value={item}>
+                  <Typography>{item}</Typography>
+                </MenuItem>
               )
             })
           }
