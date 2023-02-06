@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'app/store/types';
 import apiService from 'app/api/service/apiService';
 import { GetV3Covid19ContinentsResp } from 'app/api/model/get/getV3Covid19Continents';
+import { NavigationStateValuesEnum, NavigationStateTextEnum } from 'app/core/enum';
 import { CasesDeathsRecoveredData } from './types';
 import Worldwide from './Section/Worldwide';
 import Continent from './Section/Continent';
@@ -24,15 +25,18 @@ const Homepage: React.FC = () => {
       const casesDeathsRecoveredVaccineArray = [];
       if (worldwide) {
         casesDeathsRecoveredVaccineArray.push({
-          item: 'Cases',
+          key: NavigationStateValuesEnum.Cases,
+          item: NavigationStateTextEnum.Cases,
           totalNumber: worldwide.cases,
           numberDifference: worldwide.todayCases
         }, {
-          item: 'Deaths',
+          key: NavigationStateValuesEnum.Deaths,
+          item: NavigationStateTextEnum.Deaths,
           totalNumber: worldwide.deaths,
           numberDifference: worldwide.todayDeaths
         }, {
-          item: 'Recovered',
+          key: NavigationStateValuesEnum.Recovered,
+          item: NavigationStateTextEnum.Recovered,
           totalNumber: worldwide.recovered,
           numberDifference: worldwide.todayRecovered
         })

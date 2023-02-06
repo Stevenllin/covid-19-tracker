@@ -12,7 +12,27 @@ import { initFetchGlobalDataDoneAction } from './action';
     continentDataList: call(apiService.getV3Covid19Continents),
     countryDataList: call(apiService.getV3Covid19Countries),
   });
-  const countryList = response.countryDataList.map(item => item.country);
+  const countryList = response.countryDataList.map(item => {
+    return {
+      country: item.country,
+      population: item.population,
+      continent: item.continent,
+      cases: item.cases,
+      casesPerOneMillion: item.casesPerOneMillion,
+      todayCases: item.todayCases,
+      deaths: item.deaths,
+      deathsPerOneMillion:  item.deathsPerOneMillion,
+      todayDeaths:  item.todayCases,
+      recovered:  item.recovered,
+      recoveredPerOneMillion: item.recoveredPerOneMillion,
+      todayRecovered: item.todayRecovered,
+      countryInfo: {
+        flag: item.countryInfo.flag,
+        lat:  item.countryInfo.lat,
+        long: item.countryInfo.long
+      }
+    }
+  });
   const continentList = response.continentDataList.map(item => item.continent);
   const combineResponse = { ...response, countryList, continentList };
   yield put(initFetchGlobalDataDoneAction(combineResponse));

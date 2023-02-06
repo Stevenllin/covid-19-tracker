@@ -8,7 +8,7 @@ export interface GlobalState {
   continentDataList: GetV3Covid19ContinentsResp[];
   countryDataList: GetV3Covid19CountriesResp[];
   continentList: string[];
-  countryList: string[];
+  countryList: Country[];
   navigationState: NavigationStateValuesEnum;
 }
 
@@ -18,6 +18,26 @@ export const GLOBAL__INIT_FETCH_GLOBAL_DATA_DONE = 'GLOBAL__INIT_FETCH_GLOBAL_DA
 export const GLOBAL__NAVIGATION_STATE = 'GLOBAL__NAVIGATION_STATE';
 
 /** Action creators type */ 
+export interface Country {
+  country: string;
+  population: number;
+  continent: string;
+  cases: number;
+  casesPerOneMillion: number;
+  todayCases: number;
+  deaths: number;
+  deathsPerOneMillion: number;
+  todayDeaths: number;
+  recovered: number;
+  recoveredPerOneMillion: number;
+  todayRecovered: number;
+  countryInfo: {
+    flag: string;
+    lat: number;
+    long: number;
+  }
+}
+
 export interface InitFetchGlobalDataAction {
   type: typeof GLOBAL__INIT_FETCH_GLOBAL_DATA;
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Map from 'app/common/components/Map';
+import commonService from 'app/core/service/commonService';
 import { useSelector } from 'react-redux';
 import { RootState } from 'app/store/types';
 import SelectField from 'app/common/components/SelectField';
@@ -9,19 +10,23 @@ import apiService from 'app/api/service/apiService';
 import { SelectChangeEvent } from '@mui/material/Select';
 import { Button } from '@material-ui/core';
 import { Form, FormikProvider, useFormik } from 'formik';
-import { FormValues } from './types';
+import { FormValues, CountryInfo } from './types';
 
 const Country: React.FC = () => {
   const countryList = useSelector((state: RootState) => state.global.countryList);
+  const countryNameList = countryList.map(item => item.country)
   const navigation = useSelector((state: RootState) => state.global.navigationState);
-  const [selectedCountry, setSelectedCountry] = useState<string>('USA');
+  const [selectedCountry, setSelectedCountry] = useState<CountryInfo>(countryList[0]);
 
   const formik = useFormik<FormValues>({
     initialValues: {
-      selectedCountry: ''
+      selectedCountry: countryList[0].country
     },
     onSubmit: (formValues) => {
-      setSelectedCountry(formValues.selectedCountry);
+      const selectCountryInfo = countryList.find(item => item.country === formValues.selectedCountry);
+      if (selectCountryInfo) {
+        setSelectedCountry(selectCountryInfo);
+      }
     }
   });
 
@@ -34,12 +39,21 @@ const Country: React.FC = () => {
 
   useEffect(() => {
     (async () => {
-      const response = await apiService.getV3Covid19HistoricalCountry(selectedCountry, lastDays);
+      const response = await apiService.getV3Covid19HistoricalCountry(selectedCountry.country, lastDays);
       if (response) {
         setLineGraphData(response.timeline);
       }
     })();
   }, [lastDays, selectedCountry]);
+
+  useEffect(() => {
+    (async () => {
+      setMapCenter({
+        lat: selectedCountry.countryInfo.lat,
+        lng: selectedCountry.countryInfo.long
+      })
+    })()
+  }, [selectedCountry]);
 
   const handleChange = (event: SelectChangeEvent) => {
     setLastDays(parseInt(event.target.value));
@@ -57,8 +71,8 @@ const Country: React.FC = () => {
               <FormikProvider value={formik}>
                 <Form>
                   <div className="d-flex">
-                    <InputField handleChange={handleCountryChange}  name="selectedCountry" options={countryList} />
-                    <Button variant="text" type="submit">Text</Button>
+                    <InputField handleChange={handleCountryChange}  name="selectedCountry" options={countryNameList} />
+                    <Button className="ms-3 p-3 button" variant="text" type="submit">Submit</Button>
                   </div>
                 </Form>
               </FormikProvider>
@@ -67,7 +81,16 @@ const Country: React.FC = () => {
           </div>
         </div>
         <div className="col-5 p-2">
-          <div className="country-card p-4">
+          <div className="country-card p-4 d-flex flex-column justify-content-around">
+            <div className="d-flex justify-content-between">
+              <img className="w-50 shadow" src={selectedCountry.countryInfo.flag} alt={selectedCountry.country} />
+              <div className="d-flex flex-column justify-content-between fs-4 fw-lighter">
+                <p>Country: {selectedCountry.country}</p>
+                <p>Continent: {selectedCountry.continent}</p>
+                <p>Population: {commonService.prettyPrintStat(selectedCountry.population, false)}</p>
+              </div>
+            </div>
+            <hr className="rounded" />
             <div className="d-flex justify-content-end">
               <div className="w-60 d-flex justify-content-end">
                 <SelectField
