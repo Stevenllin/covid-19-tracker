@@ -119,6 +119,10 @@ img {
   }
 }
 
+.color-main {
+  color: $main_dark;
+}
+
 .color-orange {
   color: $color_orange_dark;
 }
@@ -169,7 +173,7 @@ hr.rounded {
 }
 
 .worldwide-card.active {
-  border-top: 6px solid $main_dark;
+  border-top: 6px solid $main_normal;
 }
 /* Worldwide */
 
@@ -201,5 +205,37 @@ hr.rounded {
 
 .map .leaflet-container {
   height: 100%;
+}
+
+.info-flag img {
+  width: 150px !important;
+  border-radius: 5px;
+}
+
+.info-name {
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  color: #555;
+}
+
+.info-flag {
+  height: 100px;
+  width: 100%;
+  background-size: cover;
+  border-radius: 8px;
+}
+
+.info-confirmed {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+}
+
+.info-container {
+  width: 150px;
+}
+
+.leaflet-popup-content p {
+  margin: 6px 0px !important;
 }
 /* Country */

@@ -58,6 +58,7 @@ const Continent: React.FC<ContinentProps> = (props) => {
         }
       }
     })();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigation]);
 
   useEffect(() => {
@@ -78,6 +79,7 @@ const Continent: React.FC<ContinentProps> = (props) => {
       
       setCountriesRanking(countriesRankingData.sort((a, b) => b.data - a.data));
     })();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedContinent]);
 
   const handleChange = (event: SelectChangeEvent) => {

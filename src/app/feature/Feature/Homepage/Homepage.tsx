@@ -43,6 +43,7 @@ const Homepage: React.FC = () => {
         setWorldwideSectionData(casesDeathsRecoveredVaccineArray);
       }
     })();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="homepage-container">

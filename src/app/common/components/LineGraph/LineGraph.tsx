@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import numeral from 'numeral';
 import { Line } from 'react-chartjs-2'
 import { Chart, LineController, LineElement, PointElement, LinearScale, Title, Filler, Tooltip } from 'chart.js' 
 import { useSelector } from 'react-redux';

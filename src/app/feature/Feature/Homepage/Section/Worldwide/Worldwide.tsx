@@ -7,7 +7,6 @@ import { WorldwideProps } from './types';
 
 const Worldwide: React.FC<WorldwideProps> = (props) => {
   const navigation = useSelector((state: RootState) => state.global.navigationState);
-  console.log('navigation', navigation);
 
   return (
     <div id="worldwide" className="d-flex my-2">
@@ -16,7 +15,7 @@ const Worldwide: React.FC<WorldwideProps> = (props) => {
           props.worldwide.map((item, index) => (
             <div key={index} className={'worldwide-card mx-2' + (navigation === item.key ? ' active' : '')}>
               <div className="d-flex flex-column justify-content-between">
-                <p className="fs-4">{item.item}</p>
+                <p className="fs-4 color-main">{item.item}</p>
                 {
                   navigation === item.key && NavigationStateValuesEnum.Cases === item.key && (
                     <p className="fs-1 color-orange">{commonService.prettyPrintStat(item.numberDifference, true)}</p>
