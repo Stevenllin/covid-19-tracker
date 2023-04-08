@@ -19,6 +19,8 @@ const Continent: React.FC<ContinentProps> = (props) => {
   const [countriesRanking, setCountriesRanking] = useState<CountriesRanking[]>([]);
   const [barChart, setBarChart] = useState<BarChartData>();
 
+  console.log('continent', continent);
+
   useEffect(() => {
     (async () => {
       /** casesPerOneMillion / deathsPerOneMillion / recoveredPerOneMillion / countriesRanking */

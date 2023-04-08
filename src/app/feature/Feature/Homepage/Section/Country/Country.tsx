@@ -18,7 +18,6 @@ const Country: React.FC = () => {
   const countryNameList = countryList.map(item => item.country)
   const [selectedCountry, setSelectedCountry] = useState<CountryInfo|null>(countryList.length === 0 ? null : countryList[0]);
   const [selectCountryName, setSelectCountryName] = useState<string>(countryList.length === 0 ? '' : countryList[0].country);
-  console.log('selectedCountry', selectedCountry);
   const formik = useFormik<FormValues>({
     initialValues: {
       selectedCountry: countryList.length === 0 ? '' : countryList[0].country
@@ -47,9 +46,11 @@ const Country: React.FC = () => {
 
   useEffect(() => {
     (async () => {
-      const response = await apiService.getV3Covid19HistoricalCountry(selectedCountry?.country ?? '', lastDays);
-      if (response) {
-        setLineGraphData(response.timeline);
+      if(selectedCountry){
+        const response = await apiService.getV3Covid19HistoricalCountry(selectedCountry?.country ?? '', lastDays);
+        if (response) {
+          setLineGraphData(response.timeline);
+        }
       }
     })();
   }, [lastDays, selectedCountry]);
