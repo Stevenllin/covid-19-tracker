@@ -1,12 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,300&family=Noto+Nastaliq+Urdu:wght@700&display=swap');body {
-  font-family: 'Montserrat', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,300&family=Noto+Nastaliq+Urdu:wght@700&display=swap");
+body {
+  font-family: "Montserrat", sans-serif;
 }
 
 /* Variable */
-$main_dark: #6770C0;
+$main_dark: #6770c0;
 $main_normal: #ccd1ff;
-$main_light: #F0F3FF;
-$color_white: #FFFFFF;
+$main_light: #f0f3ff;
+$color_white: #ffffff;
 $color_orange_dark: #ffb966;
 $color_orange: #ffedd7;
 $color_red_dark: #ea929a;
@@ -98,11 +99,11 @@ img {
   overflow: scroll;
   height: 400px;
   color: #6a5d5d;
-  
+
   & p {
     padding: 0.7rem;
   }
-  
+
   & .table-item-cases:nth-of-type(odd) {
     border-radius: 5px;
     background-color: $color_orange;
@@ -136,7 +137,7 @@ img {
 }
 
 .shadow {
-  box-shadow:  0 0 5px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
 }
 
 hr.rounded {
@@ -214,7 +215,7 @@ hr.rounded {
 
 .info-name {
   font-size: 20px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: bold;
   color: #555;
 }
@@ -227,7 +228,7 @@ hr.rounded {
 }
 
 .info-confirmed {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 16px;
 }
 
