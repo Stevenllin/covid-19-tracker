@@ -15,12 +15,12 @@ import { FormValues, CountryInfo } from './types';
 const Country: React.FC = () => {
   const countryList = useSelector((state: RootState) => state.global.countryList);
   const countryNameList = countryList.map(item => item.country)
-  const [selectedCountry, setSelectedCountry] = useState<CountryInfo>(countryList[0]);
-  const [selectCountryName, setSelectCountryName] = useState<string>(countryList[0].country);
+  const [selectedCountry, setSelectedCountry] = useState<CountryInfo|null>(countryList.length === 0 ? null : countryList[0]);
+  const [selectCountryName, setSelectCountryName] = useState<string>(countryList.length === 0 ? '' : countryList[0].country);
 
   const formik = useFormik<FormValues>({
     initialValues: {
-      selectedCountry: countryList[0].country
+      selectedCountry: countryList.length === 0 ? '' : countryList[0].country
     },
     onSubmit: (formValues) => {
       const selectCountryInfo = countryList.find(item => item.country === formValues.selectedCountry);
@@ -46,7 +46,7 @@ const Country: React.FC = () => {
 
   useEffect(() => {
     (async () => {
-      const response = await apiService.getV3Covid19HistoricalCountry(selectedCountry.country, lastDays);
+      const response = await apiService.getV3Covid19HistoricalCountry(selectedCountry?.country ?? '', lastDays);
       if (response) {
         setLineGraphData(response.timeline);
       }
@@ -56,8 +56,8 @@ const Country: React.FC = () => {
   useEffect(() => {
     (async () => {
       setMapCenter({
-        lat: selectedCountry.countryInfo.lat,
-        lng: selectedCountry.countryInfo.long
+        lat: selectedCountry?.countryInfo.lat ?? 0,
+        lng: selectedCountry?.countryInfo.long ?? 0
       })
       setMapZoom(5);
     })()
@@ -95,11 +95,11 @@ const Country: React.FC = () => {
         <div className="col-5 p-2">
           <div className="country-card p-4 d-flex flex-column justify-content-around">
             <div className="d-flex justify-content-between">
-              <img className="w-50 shadow" src={selectedCountry.countryInfo.flag} alt={selectedCountry.country} />
+              <img className="w-50 shadow" src={selectedCountry?.countryInfo.flag} alt={selectedCountry?.country} />
               <div className="d-flex flex-column justify-content-between fs-5 fw-lighter">
-                <p>Country: {selectedCountry.country}</p>
-                <p>Continent: {selectedCountry.continent}</p>
-                <p>Population: {commonService.prettyPrintStat(selectedCountry.population, false)}</p>
+                <p>Country: {selectedCountry?.country}</p>
+                <p>Continent: {selectedCountry?.continent}</p>
+                <p>Population: {commonService.prettyPrintStat(selectedCountry?.population ?? 0, false)}</p>
               </div>
             </div>
             <hr className="rounded" />

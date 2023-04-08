@@ -44,7 +44,7 @@ const Homepage: React.FC = () => {
       }
     })();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [worldwide]);
   return (
     <div className="homepage-container">
       <Worldwide worldwide={worldwideSectionData}/>

@@ -7,7 +7,7 @@ import { WorldwideProps } from './types';
 
 const Worldwide: React.FC<WorldwideProps> = (props) => {
   const navigation = useSelector((state: RootState) => state.global.navigationState);
-
+  console.log('123');
   return (
     <div id="worldwide" className="d-flex my-2">
       {
