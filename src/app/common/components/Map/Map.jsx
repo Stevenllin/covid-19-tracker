@@ -52,9 +52,21 @@ const Map = ({ center, zoom, onSelect }) => {
         setData(countryDataListUpdate);
         break;
       }
-      default: setData([])
+      default: {
+        const countryDataListUpdate = countryDataList.map(item => {
+          return {
+            item: NavigationStateTextEnum.Cases,
+            name: item.country,
+            countryInfo: item.countryInfo,
+            number: item.cases,
+            today: item.todayCases,
+            million: item.casesPerOneMillion
+          }
+        });
+        setData(countryDataListUpdate);
+      }
     }
-  }, [navigation]);
+  }, [countryDataList, navigation]);
 
   return (
     <div className="map">
