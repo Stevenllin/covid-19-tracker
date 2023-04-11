@@ -14,16 +14,16 @@ const InputField: React.FC<InputFieldProps> = ({ name, options, handleChange }) 
         options={options}
         renderOption={(props, option) => (
           <li key={option} {...props}>
-            <Typography style={{ fontSize: 16, fontFamily: ["Montserrat", "sans-serif"].join(",") }}>{option}</Typography>
+            <Typography style={{ fontSize: 20, fontFamily: ["Montserrat", "sans-serif"].join(",") }}>{option}</Typography>
           </li>
         )}
-        sx={{ width: '35%' }}
+        sx={{ width: '40%', height: '100%', borderRadius: '15px' }}
         onChange={(event, value) => handleChange(value)}
         renderInput={(params) => {
           return (
               <TextField
                 {...params}
-                InputLabelProps={{ style: { fontFamily: ["Montserrat", "sans-serif"].join(","), fontSize: 16 } }} // font size of input label
+                InputLabelProps={{ style: { fontFamily: ["Montserrat", "sans-serif"].join(","), fontSize: 20 } }} // font size of input label
                 sx={{
                   '.MuiInputBase-input': { fontSize: '16px', fontFamily: ["Montserrat", "sans-serif"].join(",") },
                 }}

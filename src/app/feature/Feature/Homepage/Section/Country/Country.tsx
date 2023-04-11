@@ -42,7 +42,7 @@ const Country: React.FC = () => {
     if (selectCountryInfo) {
       setSelectedCountry(selectCountryInfo);
     }
-  }, [selectCountryName]);
+  }, [countryList, selectCountryName]);
 
   useEffect(() => {
     (async () => {
@@ -84,7 +84,7 @@ const Country: React.FC = () => {
             <div className="mb-4 d-flex justify-content-end">
               <FormikProvider value={formik}>
                 <Form>
-                  <div className="d-flex">
+                  <div className="d-flex align-items-center">
                     <InputField handleChange={handleCountryChange}  name="selectedCountry" options={countryNameList} />
                     <Button className="ms-3 p-3 button" variant="text" type="submit">Submit</Button>
                   </div>

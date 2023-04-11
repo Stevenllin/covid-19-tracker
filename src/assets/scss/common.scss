@@ -12,8 +12,8 @@ $color_orange_dark: #ffb966;
 $color_orange: #ffedd7;
 $color_red_dark: #ea929a;
 $color_red: #ffd7db;
-$color_green_dark: #a5ffd5;
-$color_green: #e2fff2;
+$color_green_dark: #4feba2;
+$color_green: #d1fbe9;
 /* Variable */
 
 /* Html tag */
@@ -91,7 +91,13 @@ img {
 .button {
   background-color: $main_normal !important;
   color: $main_dark !important;
+  border-radius: 15px !important;
+  font-size: 18px !important;
   font-weight: bold;
+}
+
+.MuiInputBase-input {
+  height: 1.5rem;
 }
 
 .table {
